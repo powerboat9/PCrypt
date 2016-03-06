@@ -50,5 +50,42 @@ function rsaKeygen()
     local n = p * q
     local totN = n - (p + q - 1)
     local d = randomPrime(2, totN - 1)
+    local e = nil
+    do
+        local q, r, s, t = {}, {}, {}, {}
+        r[0] = e
+        r[1] = totN
+        s[0] = 1
+        s[1] = 0
+        t[0] = 0
+        t[1] = 1
+        local index = 2
+        while true do
+            q[index] = r[index - 2] / r[index - 1]
+            r[index] = r[index - 2] - q[index] * r[index - 1]
+            s[index] = s[index - 2] - q[index] * s[index - 1]
+            t[index] = t[index - 2] - q[index] * t[index - 1]
+            if r[index] == 0 then
+                e = s[index - 1]
+            end
+        end
+    end
+    return e, d
+end
+
+function toHex(n)
+    --n has to be a whole number, less than 68719476736, and greater than or equal to 0
+    assert((type(n) == "number") and ((n % 1) == 0), "N Has To Be A Whole Number")
+    assert(n < 68719476736, "N Has To Be Less Than 68719476736")
+    assert(n >= 0, "N Can't Be Negative")
+    local charValue = ""
+    for i = 8, 1, -1 do
+        local numValue = math.floor(n / (16 ^ i))
+        n = n - (numValue * (16 ^ i))
+        charValue = charValue .. ("0123456789abcdef"):sub(numValue + 1, numValue + 1)
+    end
+    return charValue
+end
     
-    
+function toNumber(hex)
+    for i = #hex
