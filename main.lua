@@ -88,4 +88,8 @@ function toHex(n)
 end
     
 function toNumber(hex)
-    for i = #hex
+    local n = 0
+    for i = #hex, 1, -1 do
+        local placeValue = 16 ^ (i - 1)
+        local char = string.sub(#hex - i)
+        local nChar = ("0123456789abcdef"):find(char)
