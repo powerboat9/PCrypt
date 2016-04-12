@@ -74,14 +74,14 @@ function rsaKeygen()
 end
 
 function toHex(n)
-    --n has to be a whole number, less than 68719476736, and greater than or equal to 0
+    --n has to be a whole number, less than (16 ^ 16), and greater than or equal to 0
     assert((type(n) == "number") and ((n % 1) == 0), "N Has To Be A Whole Number")
-    assert(n < 68719476736, "N Has To Be Less Than 68719476736")
+    assert(n < (16 ^ 16), "N Has To Be Less Than " .. (16 ^ 16))
     assert(n >= 0, "N Can't Be Negative")
     local charValue = ""
-    for i = 8, 1, -1 do
-        local numValue = math.floor(n / (16 ^ i))
-        n = n - (numValue * (16 ^ i))
+    for i = 1, 16 do
+        local numValue = math.floor(n / (16 ^ (16 - i)))
+        n = n - (numValue * (16 ^ (i - 1)))
         charValue = charValue .. ("0123456789abcdef"):sub(numValue + 1, numValue + 1)
     end
     return charValue
@@ -89,7 +89,14 @@ end
     
 function toNumber(hex)
     local n = 0
-    for i = 1, #hex do
-        local placeValue = 16 ^ (#hex - (i - 1))
-        local char = string.sub(#hex - i)
-        local nChar = ("0123456789abcdef"):find(char) - 1
+    for i = 1, 16 do
+        local placeValue = 16 ^ (16 - i)
+        local char = string.sub(i, i)
+        n = n + (("0123456789abcdef"):find(char) - 1) * placeValue
+    end
+    return n
+end
+
+function push(data, key, n)
+    return (data ^ key) % n
+end
