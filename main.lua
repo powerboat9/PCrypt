@@ -1,4 +1,4 @@
-math.randomseed(os.time())
+math.randomseed(os.time()); math.random(); math.random(); math.random() --I *think* the first few values are the same on some platforms
 
 function testForPrime(n)
     --Implements Miller-Rabin, taken from in https://en.wikipedia.org/wiki/Miller%E2%80%93Rabin_primality_test
@@ -89,7 +89,7 @@ end
     
 function toNumber(hex)
     local n = 0
-    for i = #hex, 1, -1 do
-        local placeValue = 16 ^ (i - 1)
+    for i = 1, #hex do
+        local placeValue = 16 ^ (#hex - (i - 1))
         local char = string.sub(#hex - i)
-        local nChar = ("0123456789abcdef"):find(char)
+        local nChar = ("0123456789abcdef"):find(char) - 1
