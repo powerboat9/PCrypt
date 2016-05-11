@@ -15,6 +15,36 @@ for i = 1, 5 do
     end
 end
 
+local function toByte(char)
+    if #char > 1 then
+        error("Invalid Charicter", 2)
+    end
+    local n = char:byte()
+    local byte = {} --Little Edian
+    for i = 8, 1 do
+        local v = n >= (2 ^ (i - 1))
+        if v then
+            n = n - v
+            byte[9 - i] = true
+        else
+            byte[9 - i] = false
+        end
+    end
+    return byte
+end
+
+local inBytes = {}
+for i = 1, #input do
+    local byte = toByte(input:sub(i, i))
+    for j = 1, 8 do
+        inBytes[(i - 1) * 8 + j] = byte[j]
+    end
+end
+
+local inLength = #inBytes
+
+
+
 local function xor(v1, v2)
     return (v1 or v2) and (not (v1 and v2))
 end
