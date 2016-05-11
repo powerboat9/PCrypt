@@ -1,3 +1,4 @@
+local input = ...
 local l = 6
 
 local wSize = 2 ^ l
@@ -12,6 +13,10 @@ for i = 1, 5 do
             state[i][j][k] = (5 * i + j) * w + k
         end
     end
+end
+
+local function xor(v1, v2)
+    return (v1 or v2) and (not (v1 and v2))
 end
 
 local function round1()
