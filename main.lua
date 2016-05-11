@@ -59,3 +59,17 @@ local function round3()
         end
     end
 end
+
+local function round4()
+    local newState = {}
+    for i = 1, 5 do
+        newState[i] = {}
+        for j = 1, 5 do
+            newState[i][j] = {}
+            for k = 1, wSize do
+                newState[i][j][k] = xor(state[i][j][k], (not state[i][(j - 2) % 4 + 1][k]) and state[i][(j - 3) % 4 + 1][k])
+            end
+        end
+    end
+    state = newState
+end
