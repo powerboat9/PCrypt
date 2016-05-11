@@ -25,6 +25,9 @@ local function round1()
     end
 end
 
+local function round2()
+    local tNums = {0, 1, 3, 6, 10, 15, 21, 28, 36, 45, 55, 66, 78, 91, 105, 120, 136, 153, 171, 190, 210, 231, 253, 276, 300, 325, 351, 378, 406}
+
 local function round3()
     local newState = {}
     for i = 1, 5 do
