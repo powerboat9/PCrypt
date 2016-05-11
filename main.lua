@@ -38,12 +38,17 @@ local function round2()
     --local tNums = {0, 1, 3, 6, 10, 15, 21, 28, 36, 45, 55, 66, 78, 91, 105, 120, 136, 153, 171, 190, 210, 231, 253, 276, 300}
     local newState = {}
     for i = 1, 5 do
+        newState[i] = {}
         for j = 1, 5 do
+            newState[i][j] = {}
             for k = 1, wSize do
-                local t = (i - 1) * 5 + j - 1 --To get the triangle number
-                newState[i][j][k] = state[i][j][k - (t + 1
-    
-        
+                local t = (i - 1) * 5 + j - 1 --To get the triangle number index
+                newState[i][j][k] = state[i][j][k - ((t + 1) * (t + 2) / 2)]
+            end
+        end
+    end
+    state = newState
+end
 
 local function round3()
     local newState = {}
