@@ -26,14 +26,15 @@ local function round1()
 end
 
 local function round2()
-    local tNums = {}
+    --[[local tNums = {}
     for iTNum = 1, rounds do
         local processNum = iTNum
         while processNum > 0 do
             tNums[iTNum] = tNum[iTNum] + processNum * 3 - 2
             processNum = processNum - 3
         end
-    end
+    end]]--
+    local tNums = {0, 1, 3, 6, 10, 15, 21, 28, 36, 45, 55, 66, 78, 91, 105, 120, 136, 153, 171, 190, 210, 231, 253, 276, 300}
     
         
 
