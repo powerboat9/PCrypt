@@ -30,7 +30,7 @@ local function round2()
     for iTNum = 1, rounds do
         local processNum = iTNum
         while processNum > 0 do
-            tNums[iTNum] = tNum[iTNum] + 
+            tNums[iTNum] = tNum[iTNum] + process
         
 
 local function round3()
