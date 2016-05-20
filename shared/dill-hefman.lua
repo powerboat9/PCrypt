@@ -1,6 +1,6 @@
-function genPair(
+function genPair()
     local p = RSA.genPrime()
-    local g
+    local g = RSA.genPrime()
     while true do
         g = math.random(1, 64)
         local done, allredy = true, {}
@@ -13,8 +13,10 @@ function genPair(
                 allredy[v] = true
             end
         end
+        if done then break end
     end
     return p, g
 end
 
 function getSecrets(a, sentB)
+    
