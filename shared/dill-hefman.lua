@@ -19,4 +19,4 @@ function genPair()
 end
 
 function getSecrets(a, sentB)
-    
+    local s = math.random(1, 2 ^ (2048
