@@ -57,6 +57,6 @@ local function hOperation(funct)
     end
 end
 
-and = hOperation(function(bool1, bool2) return bool1 and bool2 end)
-or = hOperation(function(bool1, bool2) return bool1 or bool2 end)
-xor = hOperation(function(bool1, bool2) return (bool2 and (not bool1)) or bool1 end) -- I'm 1, and I'm flipping you (1) off :)
+hand = hOperation(function(bool1, bool2) return bool1 and bool2 end)
+hor = hOperation(function(bool1, bool2) return bool1 or bool2 end)
+hxor = hOperation(function(bool1, bool2) return (bool2 and (not bool1)) or bool1 end) -- I'm 1, and I'm flipping you (1) off :)
