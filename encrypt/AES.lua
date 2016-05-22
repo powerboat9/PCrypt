@@ -8,11 +8,10 @@ local function expandKey(k)
 function encrypt(msg, key) --Every parameter is assumed to be safe
     local state = {}
     local nb, nk = #msg / 8, #key / 8 --because we divide by rows (4) and then by the number of charicters in a byte (2) to get the bytes in a row
-    for i = 1, 4 do
-        state[i] = {}
-        for j = 1, nb do
-            local index = i + j * 4
-            state[i][i] = msg:sub(index * 2 - 1, index * 2)
+    for j = 1, nb do
+        for i = 1, 4 do
+            if i == j then state[i] = {} end
+            state[i][j] = msg:sub(index * 2 - 1, index * 2)
         end
     end
     local key = {}
