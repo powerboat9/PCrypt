@@ -2,6 +2,8 @@ local function multi(h1, h2)
     return ntoh((hton(h1) * hton(h2)) % 299)
 end
 
+local function SubBytes(b)
+
 local function expandKey(k)
     loca
 
