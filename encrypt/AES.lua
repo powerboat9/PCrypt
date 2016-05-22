@@ -6,6 +6,7 @@ local function expandKey(k)
     loca
 
 function encrypt(msg, key) --Every parameter is assumed to be safe
+    if (#msg ~= 32) or ((#key ~= 32) and (#key ~= 48) and (#key ~= 64)) then error("Incorrect message or key size", 2) end
     local state = {}
     local nb, nk = #msg / 8, #key / 8 --because we divide by rows (4) and then by the number of charicters in a byte (2) to get the bytes in a row
     for j = 1, nb do
