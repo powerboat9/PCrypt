@@ -22,7 +22,7 @@ local function multi(h1, h2)
 end
 
 local function SubBytes(state)
-    
+    local row = 
 local function expandKey(k)
     loca
 
