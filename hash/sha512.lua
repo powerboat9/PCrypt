@@ -1,5 +1,11 @@
-local function compress()
+function hash512(msg)
+    assert(type(msg) == "string", "Invalid input")
+    local bin = convert.stob(msg) .. "1"
+    local len = #bin
+    local add = (len % 1024)
+    if add < 0 then
+        add = 
 
 local function genNewH(h)
-    assert((type(h) == "number") and (h >= 0) and (h < (2 ^ 64)), "Invalid input")
-    return h + 
+    assert(convert.isHex(h, 8), "Invalid input")
+    
