@@ -9,7 +9,7 @@ for i = 0, 15 do
             _, element = convert.band(affineRow, v):gsub("1", "")
             newMatric = newMatric .. (element % 2)
         end
-        sbox[i][j] = convert.btoh(convert.bxor(newMatric, "11000110")
+        sbox[i][j] = convert.btoh(convert.bxor(newMatric, "11000110"))
     end
 end
 
