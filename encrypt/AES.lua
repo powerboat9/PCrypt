@@ -17,6 +17,17 @@ local function multi(h1, h2)
     return ntoh((hton(h1) * hton(h2)) % 299)
 end
 
+local genRoundKeys
+do
+    local function rot(h)
+        assert(convert.isH(h, 4), "Invalid rot argument")
+        h = convert.hpad(h)
+        return h:sub(3, -1) .. h:sub(1, 2)
+    end
+    local function rcon(h)
+        assert(convert.isH(h  4), "Invalid argument to rcon")
+        local n = convert.hton(h)
+
 local function SubBytes(state)
     local row = 
 local function expandKey(k)
