@@ -106,6 +106,27 @@ local function isValidKey(k)
     return true
 end
 
+local function prep(msg, n, randLen)
+    n = n or math.huge
+    randLen = randLen or 32
+    if type(msg) ~= "string" then
+        error("Could not encrypt non string", 2)
+    elseif type(n) ~= "number" or n < 0 or n == math.huge then
+        error("Invalid n modulus", 2)
+    elseif type(randLen) ~= "number" or randLen < 0 or randLen == math.huge then
+        error("Invalid random bit length", 2)
+    end
+    n = math.floor(math.log(n, 2))
+    local kLen = #msg * 8 + randLen
+    if kLen < 0 then
+        error("Message too large", 2)
+    end
+    local sha = {}
+    if not pcall(load("loadfile(\"/PCrypt/hash/sha\")()", "shaLoad", nil, sha)) then
+        error("Could not load sha library", 2)
+    end
+    local 
+
 function encrypt(key, msg)
     if not isValidKey(key) then
         error("Invalid key", 0)
